@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/nolotz/struct2ts"
+	"github.com/stretchr/testify/assert"
 )
 
 type OtherStruct struct {
@@ -13,27 +14,25 @@ type OtherStruct struct {
 }
 
 type ComplexStruct struct {
-	S           string       `json:"s,omitempty"`
-	I           int          `json:"i,omitempty"`
-	F           float64      `json:"f,omitempty"`
-	TS          *int64       `json:"ts,omitempty" ts:"date,null"`
-	T           time.Time    `json:"t,omitempty"` // automatically handled
-	NullOther   *OtherStruct `json:"o,omitempty"`
-	NoNullOther *OtherStruct `json:"nno,omitempty" ts:",no-null"`
-	Data        Data         `json:"d"`
-	DataPtr     *Data        `json:"dp"`
-	CT          CustomType   `json:"ct"`
+	CT CustomType `json:"ct"`
 }
 
 type Data map[string]interface{}
 
 func TestComplexStruct(t *testing.T) {
-	s2ts := struct2ts.New(nil)
+	s2ts := struct2ts.New(&struct2ts.Options{
+		InterfaceOnly: true,
+		NoHelpers:     true,
+		NoCapitalize:  true,
+	})
 	s2ts.Add(ComplexStruct{})
 
 	var buf bytes.Buffer
 
 	s2ts.RenderTo(&buf)
+
+	assert.Equal(t, "", buf.String())
+
 	// Output:
 	// // helpers
 	// const maxUnixTSInSeconds = 9999999999;
@@ -89,7 +88,7 @@ func TestComplexStruct(t *testing.T) {
 	// }
 	//
 	// // classes
-	// // struct2ts:github.com/OneOfOne/struct2ts_test.ComplexStructOtherStruct
+	// // struct2ts:github.com/nolotz/struct2ts_test.ComplexStructOtherStruct
 	// class ComplexStructOtherStruct {
 	// 	t: Date;
 	//
@@ -105,7 +104,7 @@ func TestComplexStruct(t *testing.T) {
 	// 	}
 	// }
 	//
-	// // struct2ts:github.com/OneOfOne/struct2ts_test.ComplexStruct
+	// // struct2ts:github.com/nolotz/struct2ts_test.ComplexStruct
 	// class ComplexStruct {
 	// 	s: string;
 	// 	i: number;

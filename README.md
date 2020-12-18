@@ -1,4 +1,4 @@
-# struct2ts [![GoDoc](https://godoc.org/github.com/OneOfOne/struct2ts?status.svg)](https://godoc.org/github.com/OneOfOne/struct2ts)
+# struct2ts [![GoDoc](https://godoc.org/github.com/nolotz/struct2ts?status.svg)](https://godoc.org/github.com/nolotz/struct2ts)
 
 An extremely simple and powerful Go struct to Typescript Class generator.
 
@@ -6,7 +6,7 @@ Inspired by [tkrajina/typescriptify-golang-structs](https://github.com/tkrajina/
 
 ## Install
 
-	go get -u -v github.com/OneOfOne/struct2ts/...
+	go get -u -v github.com/nolotz/struct2ts/...
 
 ## Features
 
@@ -47,7 +47,7 @@ type ComplexStruct struct {
 
 ```ts
 // ... helpers...
-// struct2ts:github.com/OneOfOne/struct2ts_test.ComplexStructOtherStruct
+// struct2ts:github.com/nolotz/struct2ts_test.ComplexStructOtherStruct
 class ComplexStructOtherStruct {
 	t: Date;
 
@@ -63,7 +63,7 @@ class ComplexStructOtherStruct {
 	}
 }
 
-// struct2ts:github.com/OneOfOne/struct2ts_test.ComplexStruct
+// struct2ts:github.com/nolotz/struct2ts_test.ComplexStruct
 class ComplexStruct {
 	s: string;
 	i: number;

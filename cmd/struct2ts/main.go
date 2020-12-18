@@ -173,9 +173,10 @@ import (
 	"log"
 	"io"
 	"os"
-
-	"github.com/OneOfOne/struct2ts"
-	{{ range $_, $imp := .imports }}"{{$imp}}"{{ end }}
+	"github.com/nolotz/struct2ts"
+	{{ range $_, $imp := .imports }}
+	"{{$imp}}"
+	{{ end }}
 )
 {{- if eq .pkgName "main" }}
 func main() {
