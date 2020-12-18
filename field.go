@@ -133,9 +133,9 @@ type CustomTypeScriptTyper interface {
 	CustomTypeScriptType() string
 }
 
-func (f *Field) setProps(sf reflect.StructField, sft reflect.Type) (ignore, customType bool, err error) {
+func (f *Field) setProps(sf reflect.StructField, sft reflect.Type) (ignore, customType bool) {
 	if len(sf.Name) > 0 && !ast.IsExported(sf.Name) {
-		return true, false, nil
+		return true, false
 	}
 
 	// if sf.Anonymous {

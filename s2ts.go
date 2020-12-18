@@ -84,8 +84,8 @@ func (s *StructToTS) addTypeFields(out *Struct, t reflect.Type) {
 			k = sft.Kind()
 		}
 
-		ignore, customType, err := tf.setProps(sf, sft)
-		if err != nil || ignore {
+		ignore, customType := tf.setProps(sf, sft)
+		if ignore {
 			continue
 		}
 
