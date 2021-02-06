@@ -111,7 +111,7 @@ func (f *Field) DefaultValue() string {
 	}
 
 	if f.IsDate {
-		return "new Date()"
+		return "null"
 	}
 
 	if f.TsType == "object" && f.ValType != "" {
