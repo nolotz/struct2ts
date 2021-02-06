@@ -120,10 +120,7 @@ func (s *StructToTS) addTypeFields(out *Struct, t reflect.Type) {
 			}
 		case k == reflect.Struct:
 			if isDate(sft) || tf.IsDate {
-				if strings.Contains(tf.Tag, "string") {
-					tf.TsType = "string"
-				}
-
+				tf.TsType = "string"
 				break
 			}
 			tf.TsType = "object"

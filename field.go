@@ -32,8 +32,8 @@ func (f *Field) Type(opts *Options, noSuffix bool) (out string) {
 		}
 	}
 
-	if f.IsDate && !opts.NoDate {
-		out = "Date"
+	if f.IsDate {
+		out = "string"
 	}
 
 	if !noSuffix && f.CanBeNull {
