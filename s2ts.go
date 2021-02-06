@@ -77,6 +77,7 @@ func (s *StructToTS) addTypeFields(out *Struct, t reflect.Type) {
 		sft := sf.Type
 		k := sft.Kind()
 		var tf Field
+		tf.Tag = sf.Tag.Get("s2ts")
 
 		if k == reflect.Ptr {
 			tf.CanBeNull = true
@@ -119,6 +120,10 @@ func (s *StructToTS) addTypeFields(out *Struct, t reflect.Type) {
 			}
 		case k == reflect.Struct:
 			if isDate(sft) || tf.IsDate {
+				if strings.Contains(tf.Tag, "string") {
+					tf.TsType = "string"
+				}
+
 				break
 			}
 			tf.TsType = "object"

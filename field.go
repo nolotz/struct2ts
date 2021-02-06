@@ -13,6 +13,7 @@ type Field struct {
 	TsType     string `json:"type"`
 	KeyType    string `json:"keyType,omitempty"`
 	ValType    string `json:"valType,omitempty"`
+	Tag        string `json:"tag"`
 	CanBeNull  bool   `json:"canBeNull"`
 	IsOptional bool   `json:"isOptional"`
 	IsDate     bool   `json:"isDate"`
